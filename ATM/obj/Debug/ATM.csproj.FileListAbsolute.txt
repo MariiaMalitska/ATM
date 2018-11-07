@@ -1,0 +1,10 @@
+D:\programming\OOP_new\00_MOOP_PROJECT\project_realization\ATM\ATM\bin\Debug\ATM.exe.config
+D:\programming\OOP_new\00_MOOP_PROJECT\project_realization\ATM\ATM\bin\Debug\ATM.exe
+D:\programming\OOP_new\00_MOOP_PROJECT\project_realization\ATM\ATM\bin\Debug\ATM.pdb
+D:\programming\OOP_new\00_MOOP_PROJECT\project_realization\ATM\ATM\obj\Debug\ATM.csprojAssemblyReference.cache
+D:\programming\OOP_new\00_MOOP_PROJECT\project_realization\ATM\ATM\obj\Debug\ATM.Form1.resources
+D:\programming\OOP_new\00_MOOP_PROJECT\project_realization\ATM\ATM\obj\Debug\ATM.Properties.Resources.resources
+D:\programming\OOP_new\00_MOOP_PROJECT\project_realization\ATM\ATM\obj\Debug\ATM.csproj.GenerateResource.cache
+D:\programming\OOP_new\00_MOOP_PROJECT\project_realization\ATM\ATM\obj\Debug\ATM.csproj.CoreCompileInputs.cache
+D:\programming\OOP_new\00_MOOP_PROJECT\project_realization\ATM\ATM\obj\Debug\ATM.exe
+D:\programming\OOP_new\00_MOOP_PROJECT\project_realization\ATM\ATM\obj\Debug\ATM.pdb

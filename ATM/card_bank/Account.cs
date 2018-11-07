@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -25,14 +26,22 @@ namespace ATM
             Cash += money;
         }
 
-        //if enough money wisdraw specified sum and return true, else just return false
-        public bool TryWisdrawMoney(double money){
+        //wisdraw money, if not enough throw an exception
+        public void WithdrawMoney(double money){
             if (money < 0) throw new ArgumentException("Sum of money to transfer cannot be less than zero");
             if (money > Cash)
-                return false;
-            Cash -= money;
-            return true;
+                throw new NoEnoughMoneyException("Not enough money on balance to withdraw the specified sum.");
+             Cash -= money;
         }
+    }
 
+    class NoEnoughMoneyException : Exception
+    {
+        public NoEnoughMoneyException() : base() { }
+        public NoEnoughMoneyException(string message) : base(message) { }
+        public NoEnoughMoneyException(String message, Exception innerException)
+            : base(message, innerException) { }
+        protected NoEnoughMoneyException(SerializationInfo info, StreamingContext context)
+            : base(info, context) { }
     }
 }

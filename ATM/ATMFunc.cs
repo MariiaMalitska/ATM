@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace ATM
 {
@@ -7,116 +8,109 @@ namespace ATM
         private CardBank cardBank = new CardBank();//generates cards and performs all operations with cards and accounts
         private CashGiver cashGiver = new CashGiver(100, 100, 100, 100, 100, 100);//gives cash
         private TelephoneManager telMng = new TelephoneManager();//manage operations on telephone numbers
-        private ReceiptPrinter priter = new ReceiptPrinter();//print receipts
+        private ReceiptPrinter printer = new ReceiptPrinter(10);//print receipts
         
-        public bool AddToTelBalance(double mon, string tel)
-        {
-            throw new System.NotImplementedException();
-        }
-
         public bool CanGive(int sum)
         {
-            throw new System.NotImplementedException();
+            return cashGiver.CanGive(sum);
         }
 
         public bool CardBlocked(string cardNumb)
         {
-            throw new System.NotImplementedException();
+           return cardBank.CardBlocked(cardNumb);
         }
 
-        public bool CardCorrForTransfer()
-        {
-            throw new System.NotImplementedException();
-        }
-
+        //set new pin of current card, throw exception if pin has incorrect format
         public void ChangePin(string newPin)
         {
-            throw new System.NotImplementedException();
+            cardBank.ChangePin(newPin);
         }
 
-        public int[] GetAvailableSums()
+        public List<int> GetAvailableSums()
         {
-            throw new System.NotImplementedException();
+            return cashGiver.GetAvailableSums();
         }
 
         public string GetBalanceReceipt()
         {
-            throw new System.NotImplementedException();
+            return printer.PrintBalanceReceipt(cardBank.GetCurrCardNumber(), cardBank.GetCurrCardClientName(), DateTime.Now, cardBank.GetCurrCardBalance());
         }
 
         public string GetClientNameByCard(string cardNumb)
         {
-            throw new System.NotImplementedException();
+            return cardBank.GetCardClientName(cardNumb);
         }
 
         public double GetBalance()
         {
-            throw new System.NotImplementedException();
-        }
-
-        public double GetTelCommision()
-        {
-            throw new System.NotImplementedException();
+            return cardBank.GetCurrCardBalance();
         }
 
         public double GetTransferCommision()
         {
-            throw new System.NotImplementedException();
+            return cardBank.GetTransferCommision();
         }
 
         public double GetWisdrawCommision()
         {
-            throw new System.NotImplementedException();
+            return cardBank.GetWisdrawCommision();
         }
 
         public string GetWisdrawReceipt(int wisdrMon)
         {
-            throw new System.NotImplementedException();
+            return printer.PrintWisdrawReceipt(cardBank.GetCurrCardNumber(), cardBank.GetCurrCardClientName(),
+                DateTime.Now, GetWisdrawCommision(), wisdrMon);
         }
 
-        public bool InsertCard(string cardBumb)
+        public bool InsertCard(string cardNumb)
         {
-            throw new System.NotImplementedException();
+            return cardBank.IsCardValid(cardNumb);
         }
 
-        public bool RetrieveCard()
+        public void RetrieveCard()
         {
-            throw new System.NotImplementedException();
-        }
-
-        public bool TelephoneValid(string telNumb)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public string TransferMoney(double money, string cardNumb)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public bool VerifyCard(string cardNumb, string pin)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public Dictionary<Banknote, int> WisdrawMoney()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public Dictionary<Banknote, int> WisdrawMoney(int money)
-        {
-            throw new System.NotImplementedException();
+            cardBank.RetrieveCard();
         }
 
         public bool CardCorrForTransfer(string cardNumb)
         {
-            throw new System.NotImplementedException();
+            return cardBank.CardCorrForTransfer(cardNumb);
+        }
+
+        //return operation receipt if transfer successfully done, otherwise - throw NotEnoughMoneyEsception
+        public string TransferMoney(double money, string cardNumb)
+        {
+            cardBank.TransferMoney(money,cardNumb);
+                return printer.PrintTransferReceipt(cardBank.GetCurrCardNumber(),cardBank.GetCurrCardClientName(),DateTime.Now,GetWisdrawCommision());
+        }
+
+        public bool VerifyCard(string cardNumb, string pin)
+        {
+            return cardBank.VerifyCard(cardNumb,pin);
+        }
+
+        //return banknote and their amount, if not enough money on card throws NotENoughMoneyException,
+        //if not enough banknotes in ATM, throws NoMoneyException
+        public Dictionary<Banknote, int> WisdrawMoney(int money)
+        {
+            double commMon = money * GetWisdrawCommision() / 100;
+            cardBank.WithdrawMoney(money, commMon);
+            return cashGiver.GiveMoney(money);
+        }
+
+        public bool TelephoneValid(string telNumb)
+        {
+            throw new System.NotImplementedException();//TO DO
+        }
+
+        public bool AddToTelBalance(double mon, string tel)
+        {
+            throw new System.NotImplementedException();//TO DO
         }
 
         public double GetTelCommision(double money)
         {
-            throw new System.NotImplementedException();
+            throw new System.NotImplementedException();//TO DO
         }
     }
 }

@@ -12,11 +12,11 @@ namespace ATM
         bool InsertCard(string cardBumb);//return true if card number is valid, else false (valid card == card is stored in CardBank)
         bool VerifyCard(string cardNumb, string pin);//if pin for specified card valid true, else false
         bool CardBlocked(string cardNumb);//true if card is blocked, else false
-        bool RetrieveCard();//take card out of ATM (set curr card in CardBank to null)
+        void RetrieveCard();//take card out of ATM (set curr card in CardBank to null)
         void ChangePin(string newPin);//change pin for curr card to the new one
         double GetBalance();//get balance on curr card
         string GetBalanceReceipt();//return string representation of card balance
-        int[] GetAvailableSums();//sums that ATM suggests client to wisdraw
+        List<int> GetAvailableSums();//sums that ATM suggests client to wisdraw
         bool CanGive(int sum);//true id ATM has enough amount of neccessary banknotes to give money
         double GetWisdrawCommision();//return wisdraw commision for currently inserted card
         Dictionary<Banknote, int> WisdrawMoney(int money);//wisdraw money including commision and give them to client in banknotes
