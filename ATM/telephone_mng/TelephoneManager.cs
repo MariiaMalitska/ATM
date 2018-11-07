@@ -8,7 +8,7 @@ namespace ATM
 {
     class TelephoneManager//manages all operations with telephones
     {
-        Dictionary<int, int> commiions = new Dictionary<int, int>()
+        Dictionary<double, double> commisions = new Dictionary<double, double>()
         {
             {50, 1},
             {100, 2},
@@ -26,20 +26,25 @@ namespace ATM
         }
 
         //put money on telephone balance, if telephone is not valid, throw exception
-        public void AddToTelephonebalance(string telNumb)
+        public void AddToTelephonebalance(double money, string telNumb)
         {
-            throw new NotImplementedException();//TO DO
+            if (!TelephoneValid(telNumb))
+                throw new ArgumentException("Telephone is not valid");
+            telephones.Find((Telephone t) => { return t.Number == telNumb; }).AddToBalance(money);
         }
 
         //return true if telephone valid( ATM stores information about it)
         public bool TelephoneValid(string telNumb)
         {
-            throw new NotImplementedException();//TO DO
+            return telephones.Exists((Telephone t) => { return t.Number == telNumb; });
         }
 
-        public int GetTelephoneCommision(double money)
+        //returns commision for adding money to telephone balance
+        public double GetTelephoneCommision(double money)
         {
-            throw new NotImplementedException();//TO DO
+            if (commisions.TryGetValue(money, out double comm))
+                return comm;
+            else return 0;
         }
 
         //problem to consider: how to link numbers of accounts stored in bank with telephone manager?

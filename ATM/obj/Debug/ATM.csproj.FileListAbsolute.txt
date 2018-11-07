@@ -8,3 +8,13 @@ D:\programming\OOP_new\00_MOOP_PROJECT\project_realization\ATM\ATM\obj\Debug\ATM
 D:\programming\OOP_new\00_MOOP_PROJECT\project_realization\ATM\ATM\obj\Debug\ATM.csproj.CoreCompileInputs.cache
 D:\programming\OOP_new\00_MOOP_PROJECT\project_realization\ATM\ATM\obj\Debug\ATM.exe
 D:\programming\OOP_new\00_MOOP_PROJECT\project_realization\ATM\ATM\obj\Debug\ATM.pdb
+C:\Users\Dell\Downloads\ATM\ATM\bin\Debug\ATM.exe.config
+C:\Users\Dell\Downloads\ATM\ATM\bin\Debug\ATM.exe
+C:\Users\Dell\Downloads\ATM\ATM\bin\Debug\ATM.pdb
+C:\Users\Dell\Downloads\ATM\ATM\obj\Debug\ATM.csprojAssemblyReference.cache
+C:\Users\Dell\Downloads\ATM\ATM\obj\Debug\ATM.Form1.resources
+C:\Users\Dell\Downloads\ATM\ATM\obj\Debug\ATM.Properties.Resources.resources
+C:\Users\Dell\Downloads\ATM\ATM\obj\Debug\ATM.csproj.GenerateResource.cache
+C:\Users\Dell\Downloads\ATM\ATM\obj\Debug\ATM.csproj.CoreCompileInputs.cache
+C:\Users\Dell\Downloads\ATM\ATM\obj\Debug\ATM.exe
+C:\Users\Dell\Downloads\ATM\ATM\obj\Debug\ATM.pdb

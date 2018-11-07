@@ -26,7 +26,7 @@ namespace ATM
         string TransferMoney(double money, string cardNumb);//transfer money from currently inserted card to another card including commision
         bool TelephoneValid(string telNumb);//true if telephone valid, that is, it is stored in TelephoneManager
         double GetTelCommision(double money);//get commision for adding money to telephone balance, it depends on amount of money we want to add to balance
-        bool AddToTelBalance(double mon, string tel);//add money to telephone balance including commision
+        void AddToTelBalance(double mon, string tel);//add money to telephone balance including commision
         string GetClientNameByCard(string cardNumb);//return client name by card number
     }
 }

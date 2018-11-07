@@ -81,7 +81,7 @@ namespace ATM
         public string TransferMoney(double money, string cardNumb)
         {
             cardBank.TransferMoney(money,cardNumb);
-                return printer.PrintTransferReceipt(cardBank.GetCurrCardNumber(),cardBank.GetCurrCardClientName(),DateTime.Now,GetWisdrawCommision());
+                return printer.PrintTransferReceipt(cardBank.GetCurrCardNumber(),cardBank.GetCurrCardClientName(),DateTime.Now,GetTransferCommision(),money);
         }
 
         public bool VerifyCard(string cardNumb, string pin)
@@ -100,17 +100,18 @@ namespace ATM
 
         public bool TelephoneValid(string telNumb)
         {
-            throw new System.NotImplementedException();//TO DO
+            return telMng.TelephoneValid(telNumb);
         }
 
-        public bool AddToTelBalance(double mon, string tel)
+        public void AddToTelBalance(double mon, string tel)
         {
-            throw new System.NotImplementedException();//TO DO
+            telMng.AddToTelephonebalance(mon, tel);
+            cardBank.WithdrawMoney(mon, GetTelCommision(mon));
         }
 
         public double GetTelCommision(double money)
         {
-            throw new System.NotImplementedException();//TO DO
+            return telMng.GetTelephoneCommision(money);
         }
     }
 }
