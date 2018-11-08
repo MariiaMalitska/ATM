@@ -105,8 +105,8 @@ namespace ATM
 
         public void AddToTelBalance(double mon, string tel)
         {
-            telMng.AddToTelephonebalance(mon, tel);
             cardBank.WithdrawMoney(mon, GetTelCommision(mon));
+            telMng.AddToTelephonebalance(mon, tel);
         }
 
         public double GetTelCommision(double money)

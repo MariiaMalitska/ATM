@@ -8,7 +8,7 @@ namespace ATM
 {
     class TelephoneManager//manages all operations with telephones
     {
-        Dictionary<double, double> commisions = new Dictionary<double, double>()
+        private Dictionary<double, double> commisions = new Dictionary<double, double>()
         {
             {50, 1},
             {100, 2},
@@ -18,7 +18,7 @@ namespace ATM
 
         };//for example, if add to balance [1,50] grn, commision 1 grn, [51-100] - 2grn...
 
-        List<Telephone> telephones = new List<Telephone>();
+        private List<Telephone> telephones = new List<Telephone>();
 
         public TelephoneManager()
         {
@@ -42,9 +42,12 @@ namespace ATM
         //returns commision for adding money to telephone balance
         public double GetTelephoneCommision(double money)
         {
-            if (commisions.TryGetValue(money, out double comm))
-                return comm;
-            else return 0;
+            foreach (double sum in commisions.Keys.OrderBy(a => a))
+            {
+                if (money <= sum)
+                    return commisions[sum];
+            }
+            return 0;
         }
 
         //problem to consider: how to link numbers of accounts stored in bank with telephone manager?
