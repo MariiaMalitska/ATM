@@ -437,6 +437,7 @@ namespace ATM
                 else
                     displayBox.Text = "Введено неправильний PIN-код. Будь ласка, введіть правильний PIN-код \r\n\r\n\r\n\r\n\r\n";
             }
+            input = "";
         }
 
         //mode 2
@@ -482,18 +483,18 @@ namespace ATM
             for (int i = 0; i < sums.Count; i++)
                 displayBox.Text += (i + 1) + ") " + sums[i] + "\r\n";
 
-            displayBox.Text += sums.Count + ") Ввести значення самостійно\r\n\r\nНатисніть \"Cаncel\" для повернення в головне меню";
+            displayBox.Text += (sums.Count+1) + ") Ввести значення самостійно\r\n\r\nНатисніть \"Cаncel\" для повернення в головне меню";
         }
 
         //input for mode 3
         private void WithdrawProceed(int c)
         {
-            if (c > 0 && c < sums.Count)
+            if (c > 0 && c <= sums.Count)
             {
                 sum = sums[c - 1];
                 ChangeMode(31);
             }
-            if (c == sums.Count)
+            if (c == sums.Count+1)
                 ChangeMode(33);
         }
 
@@ -795,6 +796,7 @@ namespace ATM
             }
             else
                 displayBox.Text = "Введено некорректний PIN-код. Будь ласка, введіть новий 4-значний PIN-код \r\nабо натисніть \"Cаncel\" для повернення в головне меню\r\n\r\n\r\n\r\n\r\n";
+            input = "";
         }
 
         //mode 71
