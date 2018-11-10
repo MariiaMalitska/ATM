@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ATM
+﻿namespace ATM
 {
     enum Banknote
     {
@@ -12,7 +6,7 @@ namespace ATM
         TWENTY = 20,
         FIFTY = 50,
         HUNDRED = 100,
-        TWO_HANDRED = 200,
+        TWO_HUNDRED = 200,
         FIVE_HUNDRED = 500
     }
 }

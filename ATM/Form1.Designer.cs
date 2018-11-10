@@ -44,10 +44,10 @@
             this.button0 = new System.Windows.Forms.Button();
             this.buttonOK = new System.Windows.Forms.Button();
             this.buttonBack = new System.Windows.Forms.Button();
-            this.buttonCancel = new System.Windows.Forms.Button();
             this.buttonExit = new System.Windows.Forms.Button();
             this.buttonTurn = new System.Windows.Forms.Button();
             this.buttonCard = new System.Windows.Forms.Button();
+            this.buttonCancel = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // displayBox
@@ -58,6 +58,8 @@
             this.displayBox.ReadOnly = true;
             this.displayBox.Size = new System.Drawing.Size(299, 268);
             this.displayBox.TabIndex = 0;
+            this.displayBox.Text = "Банкомат вимкнено";
+            this.displayBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // printBox
             // 
@@ -94,6 +96,7 @@
             this.button1.TabIndex = 4;
             this.button1.Text = "1";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
@@ -103,6 +106,7 @@
             this.button2.TabIndex = 5;
             this.button2.Text = "2";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button3
             // 
@@ -112,6 +116,7 @@
             this.button3.TabIndex = 6;
             this.button3.Text = "3";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button4
             // 
@@ -121,6 +126,7 @@
             this.button4.TabIndex = 7;
             this.button4.Text = "4";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // button5
             // 
@@ -130,6 +136,7 @@
             this.button5.TabIndex = 8;
             this.button5.Text = "5";
             this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // button6
             // 
@@ -139,6 +146,7 @@
             this.button6.TabIndex = 9;
             this.button6.Text = "6";
             this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // button7
             // 
@@ -148,6 +156,7 @@
             this.button7.TabIndex = 10;
             this.button7.Text = "7";
             this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // button8
             // 
@@ -157,6 +166,7 @@
             this.button8.TabIndex = 11;
             this.button8.Text = "8";
             this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
             // button9
             // 
@@ -166,6 +176,7 @@
             this.button9.TabIndex = 12;
             this.button9.Text = "9";
             this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.button9_Click);
             // 
             // button0
             // 
@@ -175,33 +186,27 @@
             this.button0.TabIndex = 13;
             this.button0.Text = "0";
             this.button0.UseVisualStyleBackColor = true;
+            this.button0.Click += new System.EventHandler(this.button0_Click);
             // 
             // buttonOK
             // 
-            this.buttonOK.Location = new System.Drawing.Point(134, 492);
+            this.buttonOK.Location = new System.Drawing.Point(226, 492);
             this.buttonOK.Name = "buttonOK";
             this.buttonOK.Size = new System.Drawing.Size(40, 40);
             this.buttonOK.TabIndex = 14;
             this.buttonOK.Text = "OK";
             this.buttonOK.UseVisualStyleBackColor = true;
+            this.buttonOK.Click += new System.EventHandler(this.buttonOK_Click);
             // 
             // buttonBack
             // 
-            this.buttonBack.Location = new System.Drawing.Point(226, 492);
+            this.buttonBack.Location = new System.Drawing.Point(134, 492);
             this.buttonBack.Name = "buttonBack";
             this.buttonBack.Size = new System.Drawing.Size(40, 40);
             this.buttonBack.TabIndex = 15;
             this.buttonBack.Text = "<-";
             this.buttonBack.UseVisualStyleBackColor = true;
-            // 
-            // buttonCancel
-            // 
-            this.buttonCancel.Location = new System.Drawing.Point(427, 400);
-            this.buttonCancel.Name = "buttonCancel";
-            this.buttonCancel.Size = new System.Drawing.Size(75, 23);
-            this.buttonCancel.TabIndex = 16;
-            this.buttonCancel.Text = "Cancel";
-            this.buttonCancel.UseVisualStyleBackColor = true;
+            this.buttonBack.Click += new System.EventHandler(this.buttonBack_Click);
             // 
             // buttonExit
             // 
@@ -221,6 +226,7 @@
             this.buttonTurn.TabIndex = 18;
             this.buttonTurn.Text = "Turn On";
             this.buttonTurn.UseVisualStyleBackColor = true;
+            this.buttonTurn.Click += new System.EventHandler(this.buttonTurn_Click);
             // 
             // buttonCard
             // 
@@ -232,16 +238,27 @@
             this.buttonCard.Text = "Вставте картку";
             this.buttonCard.UseVisualStyleBackColor = true;
             this.buttonCard.Visible = false;
+            this.buttonCard.Click += new System.EventHandler(this.buttonCard_Click);
+            // 
+            // buttonCancel
+            // 
+            this.buttonCancel.Location = new System.Drawing.Point(427, 400);
+            this.buttonCancel.Name = "buttonCancel";
+            this.buttonCancel.Size = new System.Drawing.Size(75, 23);
+            this.buttonCancel.TabIndex = 20;
+            this.buttonCancel.Text = "Cancel";
+            this.buttonCancel.UseVisualStyleBackColor = true;
+            this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(654, 585);
+            this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.buttonCard);
             this.Controls.Add(this.buttonTurn);
             this.Controls.Add(this.buttonExit);
-            this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.buttonBack);
             this.Controls.Add(this.buttonOK);
             this.Controls.Add(this.button0);
@@ -283,10 +300,10 @@
         private System.Windows.Forms.Button button0;
         private System.Windows.Forms.Button buttonOK;
         private System.Windows.Forms.Button buttonBack;
-        private System.Windows.Forms.Button buttonCancel;
         private System.Windows.Forms.Button buttonExit;
         private System.Windows.Forms.Button buttonTurn;
         private System.Windows.Forms.Button buttonCard;
+        private System.Windows.Forms.Button buttonCancel;
     }
 }
 

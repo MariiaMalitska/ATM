@@ -59,7 +59,7 @@ namespace ATM
         public string GetWisdrawReceipt(int wisdrMon)
         {
             return printer.PrintWisdrawReceipt(cardBank.GetCurrCardNumber(), cardBank.GetCurrCardClientName(),
-                DateTime.Now, GetWisdrawCommision(), wisdrMon);
+                DateTime.Now, GetWisdrawCommision(), wisdrMon, cardBank.GetCurrCardBalance());
         }
 
         public bool InsertCard(string cardNumb)
@@ -77,11 +77,11 @@ namespace ATM
             return cardBank.CardCorrForTransfer(cardNumb);
         }
 
-        //return operation receipt if transfer successfully done, otherwise - throw NotEnoughMoneyEsception
+        //return operation receipt if transfer successfully done, otherwise - throw NotEnoughMoneyException
         public string TransferMoney(double money, string cardNumb)
         {
             cardBank.TransferMoney(money,cardNumb);
-                return printer.PrintTransferReceipt(cardBank.GetCurrCardNumber(),cardBank.GetCurrCardClientName(),DateTime.Now,GetTransferCommision(),money);
+                return printer.PrintTransferReceipt(cardBank.GetCurrCardNumber(),cardBank.GetCurrCardClientName(),DateTime.Now,GetTransferCommision(),money,cardBank.GetCurrCardBalance());
         }
 
         public bool VerifyCard(string cardNumb, string pin)

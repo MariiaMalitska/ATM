@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ATM
 {
@@ -34,24 +30,32 @@ namespace ATM
         }
 
 
-        public string PrintWisdrawReceipt(string cardNumb, string ownerName, DateTime dateTime, double wisdrawComm, double wisdrawnSum)
+        public string PrintWisdrawReceipt(string cardNumb, string ownerName, DateTime dateTime, double wisdrawComm, double wisdrawnSum, double balance)
         {
             --PaperSheetCount;
             if (!AbleToPrint())
                 throw new NoPaperException("No paper left in ATM");
-            return "Card number: " + cardNumb + "\nClient name: " + ownerName +
-                "\nWisdrawn sum: " + wisdrawnSum + "\nWisdrawn commision: " + wisdrawComm + "\nIncluding commision: " +
-                (wisdrawnSum + wisdrawnSum * (wisdrawComm / 100)) + "\nTime: " + dateTime.ToString();
+            return "Card number: " + cardNumb + 
+                "\r\nClient name: " + ownerName +
+                "\r\nWithdrawn sum: " + wisdrawnSum + 
+                "\r\nWithdrawn commision: " + wisdrawComm +"%" + 
+                "\r\nIncluding commision: " + (wisdrawnSum + wisdrawnSum * (wisdrawComm / 100)) +
+                "\r\nCurrent balance: " + balance +
+                "\r\nTime: " + dateTime.ToString();
         }
 
-        public string PrintTransferReceipt(string cardNumb, string ownerName, DateTime dateTime, double transferComm, double transferSum)
+        public string PrintTransferReceipt(string cardNumb, string ownerName, DateTime dateTime, double transferComm, double transferSum, double balance)
         {
             --PaperSheetCount;
             if (!AbleToPrint())
                 throw new NoPaperException("No paper left in ATM");
-            return "Card number: " + cardNumb + "\nClient name: " + ownerName +
-                "\nTransfer sum: " + transferSum + "\nTransfer commision: " + transferComm + "\nIncluding commision: " +
-                (transferSum + transferSum * (transferComm / 100)) + "\nTime: " + dateTime.ToString();
+            return "Card number: " + cardNumb + 
+                "\r\nClient name: " + ownerName +
+                "\r\nTransfer sum: " + transferSum + 
+                "\r\nTransfer commision: " + transferComm + "%" + 
+                "\r\nIncluding commision: " + (transferSum + transferSum * (transferComm / 100)) +
+                "\r\nCurrent balance: " + balance +
+                "\r\nTime: " + dateTime.ToString();
         }
 
         public string PrintBalanceReceipt(string cardNumb, string ownerName, DateTime dateTime, double balance)
@@ -59,8 +63,10 @@ namespace ATM
             --PaperSheetCount;
             if (!AbleToPrint())
                 throw new NoPaperException("No paper left in ATM");
-            return "Card number: " + cardNumb + "\nClient name: " + ownerName +
-                "\nBalance: " + balance + "\nTime: " + dateTime.ToString();
+            return "Card number: " + cardNumb + 
+                "\r\nClient name: " + ownerName +
+                "\r\nBalance: " + balance + 
+                "\r\nTime: " + dateTime.ToString();
         }
     }
 
