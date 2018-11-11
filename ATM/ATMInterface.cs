@@ -19,10 +19,12 @@ namespace ATM
         string GetWisdrawReceipt(int wisdrMon);//get string representation of operation of wisdrawing money
         double GetTransferCommision();//get transfer commission for currently inserted card
         bool CardCorrForTransfer(string cardNumb);//true if card number is valid and not the same as inserted card and not attached to the same account
-        string TransferMoney(double money, string cardNumb);//transfer money from currently inserted card to another card including commision
+        void TransferMoney(double money, string cardNumb);//transfer money from currently inserted card to another card including commision
+        string GetTransferReceipt(double money, string cardNumb);//get string representation of transfer operation
         bool TelephoneValid(string telNumb);//true if telephone valid, that is, it is stored in TelephoneManager
         double GetTelCommision(double money);//get commision for adding money to telephone balance, it depends on amount of money we want to add to balance
         void AddToTelBalance(double mon, string tel);//add money to telephone balance including commision
         string GetClientNameByCard(string cardNumb);//return client name by card number
+        double GetCommisionInMoney(double money, double commInPercentage);//return commision in money bu given sum and commision in percentage
     }
 }

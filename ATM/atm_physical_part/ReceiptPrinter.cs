@@ -32,9 +32,9 @@ namespace ATM
 
         public string PrintWisdrawReceipt(string cardNumb, string ownerName, DateTime dateTime, double wisdrawComm, double wisdrawnSum, double balance)
         {
-            --PaperSheetCount;
             if (!AbleToPrint())
                 throw new NoPaperException("No paper left in ATM");
+            --PaperSheetCount;
             return "Card number: " + cardNumb + 
                 "\r\nClient name: " + ownerName +
                 "\r\nWithdrawn sum: " + wisdrawnSum + 
@@ -44,13 +44,15 @@ namespace ATM
                 "\r\nTime: " + dateTime.ToString();
         }
 
-        public string PrintTransferReceipt(string cardNumb, string ownerName, DateTime dateTime, double transferComm, double transferSum, double balance)
+        public string PrintTransferReceipt(string cardNumb, string ownerName, DateTime dateTime, double transferComm, double transferSum, double balance, string cardReceiver, string receiverName)
         {
-            --PaperSheetCount;
             if (!AbleToPrint())
                 throw new NoPaperException("No paper left in ATM");
+            --PaperSheetCount;
             return "Card number: " + cardNumb + 
                 "\r\nClient name: " + ownerName +
+                "\r\nReceiver card: "+ cardReceiver +
+                "\r\nReceiver name: "+ receiverName +
                 "\r\nTransfer sum: " + transferSum + 
                 "\r\nTransfer commision: " + transferComm + "%" + 
                 "\r\nIncluding commision: " + (transferSum + transferSum * (transferComm / 100)) +
@@ -60,9 +62,9 @@ namespace ATM
 
         public string PrintBalanceReceipt(string cardNumb, string ownerName, DateTime dateTime, double balance)
         {
-            --PaperSheetCount;
             if (!AbleToPrint())
                 throw new NoPaperException("No paper left in ATM");
+            --PaperSheetCount;
             return "Card number: " + cardNumb + 
                 "\r\nClient name: " + ownerName +
                 "\r\nBalance: " + balance + 

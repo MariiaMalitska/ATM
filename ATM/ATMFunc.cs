@@ -6,9 +6,9 @@ namespace ATM
     class ATMFunc : ATMInterface
     {
         private CardBank cardBank = new CardBank();//generates cards and performs all operations with cards and accounts
-        private CashGiver cashGiver = new CashGiver(100, 100, 100, 100, 100, 100);//gives cash
+        private CashGiver cashGiver = new CashGiver(5, 0 , 3, 2, 1, 0);//gives cash
         private TelephoneManager telMng = new TelephoneManager();//manage operations on telephone numbers
-        private ReceiptPrinter printer = new ReceiptPrinter(10);//print receipts
+        private ReceiptPrinter printer = new ReceiptPrinter(3);//print receipts
         
         public bool CanGive(int sum)
         {
@@ -77,11 +77,15 @@ namespace ATM
             return cardBank.CardCorrForTransfer(cardNumb);
         }
 
-        //return operation receipt if transfer successfully done, otherwise - throw NotEnoughMoneyException
-        public string TransferMoney(double money, string cardNumb)
+        //transfer  money if enough money on card, otherwise - throw NotEnoughMoneyException
+        public void TransferMoney(double money, string cardNumb)
         {
             cardBank.TransferMoney(money,cardNumb);
-                return printer.PrintTransferReceipt(cardBank.GetCurrCardNumber(),cardBank.GetCurrCardClientName(),DateTime.Now,GetTransferCommision(),money,cardBank.GetCurrCardBalance());
+        }
+
+        public string GetTransferReceipt(double money, string cardNumb)
+        {
+            return printer.PrintTransferReceipt(cardBank.GetCurrCardNumber(), cardBank.GetCurrCardClientName(), DateTime.Now, GetTransferCommision(), money, cardBank.GetCurrCardBalance(), cardNumb, cardBank.GetCardClientName(cardNumb));
         }
 
         public bool VerifyCard(string cardNumb, string pin)
@@ -93,7 +97,9 @@ namespace ATM
         //if not enough banknotes in ATM, throws NoMoneyException
         public Dictionary<Banknote, int> WisdrawMoney(int money)
         {
-            double commMon = money * GetWisdrawCommision() / 100;
+            //double commMon = money * GetWisdrawCommision() / 100;
+            //double commMonRounded = Math.Round(commMon * 100) / 100;
+            double commMon = CardBank.GetCommInMoney(money, GetWisdrawCommision());
             cardBank.WithdrawMoney(money, commMon);
             return cashGiver.GiveMoney(money);
         }
@@ -112,6 +118,11 @@ namespace ATM
         public double GetTelCommision(double money)
         {
             return telMng.GetTelephoneCommision(money);
+        }
+
+        public double GetCommisionInMoney(double money, double commInPercentage)
+        {
+            return CardBank.GetCommInMoney(money, commInPercentage);
         }
     }
 }

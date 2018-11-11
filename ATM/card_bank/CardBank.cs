@@ -57,6 +57,13 @@ namespace ATM
             return cardTypeMng.GetWisdrawCommision(currCard.Type);
         }
 
+        public static double GetCommInMoney(double money, double CommInPercentage)
+        {
+            double commMon = money * CommInPercentage / 100;
+            double commMonRounded = Math.Round(commMon * 100) / 100;
+            return commMonRounded;
+        }
+
         //if enough money on accont withdraws money else throw exception
         public void WithdrawMoney(double money, double commisionMoney)
         {
@@ -66,10 +73,10 @@ namespace ATM
         }
         
         //return true if it is possible to transfer money to the card, that is, when information about it is stored in ATM
-        //and it is attached to account other than current card
+        //and it is attached to account other than current card and it is not blocked
         public bool CardCorrForTransfer(string cardNumb)
         {
-            return IsCardValid(cardNumb) && (GetCard(cardNumb).GetClientName() != currCard.GetClientName());
+            return IsCardValid(cardNumb) && (GetCard(cardNumb).GetClientName() != currCard.GetClientName()) && !CardBlocked(cardNumb);
         }
 
 
@@ -80,7 +87,9 @@ namespace ATM
                 throw new ArgumentException("Sum for transfering cannot be less than 0.");
             if (!CardCorrForTransfer(cardNumb))
                 throw new ArgumentException("Card number not available for transfering.");
-            double commMon = transfSum * GetTransferCommision() / 100;
+            //double commMon = transfSum * GetTransferCommision() / 100;
+            //double commMonRounded = Math.Round(commMon * 100) / 100;
+            double commMon = GetCommInMoney(transfSum, GetTransferCommision());
             WithdrawMoney(transfSum, commMon);
             GetCard(cardNumb).AddMoney(transfSum);
         }
