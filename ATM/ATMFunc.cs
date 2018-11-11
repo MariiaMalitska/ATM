@@ -6,7 +6,7 @@ namespace ATM
     class ATMFunc : ATMInterface
     {
         private CardBank cardBank = new CardBank();//generates cards and performs all operations with cards and accounts
-        private CashGiver cashGiver = new CashGiver(5, 5, 5, 5, 5, 5);//gives cash
+        private CashGiver cashGiver = new CashGiver(5, 4, 3, 2, 1, 1);//gives cash
         private TelephoneManager telMng = new TelephoneManager();//manage operations on telephone numbers
         private ReceiptPrinter printer = new ReceiptPrinter(3);//print receipts
         

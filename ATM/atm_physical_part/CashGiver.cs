@@ -75,8 +75,9 @@ namespace ATM
                 b = bn[i];
                 bAmount = banknotes[b];
                 howMuch = monToGiv / (int)b;
-                if (howMuch > 0 && howMuch <= bAmount)
+                if (howMuch > 0 &&  bAmount > 0)
                 {
+                    howMuch = (howMuch < bAmount) ? howMuch : bAmount;
                     toGive.Add(b, howMuch);
                     monToGiv -= (int)b * howMuch;
                 }
