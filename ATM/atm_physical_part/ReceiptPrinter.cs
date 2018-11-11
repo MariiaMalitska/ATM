@@ -30,7 +30,7 @@ namespace ATM
         }
 
 
-        public string PrintWisdrawReceipt(string cardNumb, string ownerName, DateTime dateTime, double wisdrawComm, double wisdrawnSum, double balance)
+        public string PrintWisdrawReceipt(string cardNumb, string ownerName, DateTime dateTime, decimal wisdrawComm, decimal wisdrawnSum, decimal balance)
         {
             if (!AbleToPrint())
                 throw new NoPaperException("No paper left in ATM");
@@ -44,7 +44,7 @@ namespace ATM
                 "\r\nTime: " + dateTime.ToString();
         }
 
-        public string PrintTransferReceipt(string cardNumb, string ownerName, DateTime dateTime, double transferComm, double transferSum, double balance, string cardReceiver, string receiverName)
+        public string PrintTransferReceipt(string cardNumb, string ownerName, DateTime dateTime, decimal transferComm, decimal transferSum, decimal balance, string cardReceiver, string receiverName)
         {
             if (!AbleToPrint())
                 throw new NoPaperException("No paper left in ATM");
@@ -60,7 +60,7 @@ namespace ATM
                 "\r\nTime: " + dateTime.ToString();
         }
 
-        public string PrintBalanceReceipt(string cardNumb, string ownerName, DateTime dateTime, double balance)
+        public string PrintBalanceReceipt(string cardNumb, string ownerName, DateTime dateTime, decimal balance)
         {
             if (!AbleToPrint())
                 throw new NoPaperException("No paper left in ATM");

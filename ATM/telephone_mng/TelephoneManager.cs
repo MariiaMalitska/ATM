@@ -8,13 +8,13 @@ namespace ATM
 {
     class TelephoneManager//manages all operations with telephones
     {
-        private Dictionary<double, double> commisions = new Dictionary<double, double>()
+        private Dictionary<decimal, decimal> commisions = new Dictionary<decimal, decimal>()
         {
             {50, 1},
             {100, 2},
             {150, 3},
             {200, 4},
-            {int.MaxValue, 5}
+            {decimal.MaxValue,5}
 
         };//for example, if add to balance [1,50] grn, commision 1 grn, [51-100] - 2grn...
 
@@ -26,7 +26,7 @@ namespace ATM
         }
 
         //put money on telephone balance, if telephone is not valid, throw exception
-        public void AddToTelephonebalance(double money, string telNumb)
+        public void AddToTelephonebalance(decimal money, string telNumb)
         {
             if (!TelephoneValid(telNumb))
                 throw new ArgumentException("Telephone is not valid");
@@ -40,9 +40,9 @@ namespace ATM
         }
 
         //returns commision for adding money to telephone balance
-        public double GetTelephoneCommision(double money)
+        public decimal GetTelephoneCommision(decimal money)
         {
-            foreach (double sum in commisions.Keys.OrderBy(a => a))
+            foreach (decimal sum in commisions.Keys.OrderBy(a => a))
             {
                 if (money <= sum)
                     return commisions[sum];

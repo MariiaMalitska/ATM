@@ -10,32 +10,32 @@ namespace ATM
      class CardTypeManager
     {
         //information about commisions fro wisdrawing money for each type of cards
-        private   Dictionary<CardType, double> wisdrawCommisions = new Dictionary<CardType, double>();
+        private   Dictionary<CardType, decimal> wisdrawCommisions = new Dictionary<CardType, decimal>();
         //information about commisions for transfering money for each type of cards
-        private  Dictionary<CardType, double> transferCommisions = new Dictionary<CardType, double>();
+        private  Dictionary<CardType, decimal> transferCommisions = new Dictionary<CardType, decimal>();
 
         public CardTypeManager()
         {
-            wisdrawCommisions.Add(CardType.VISA,1);
-            wisdrawCommisions.Add(CardType.MASTERCARD, 1.5);
-            transferCommisions.Add(CardType.VISA,2);
-            transferCommisions.Add(CardType.MASTERCARD,1.5);
+            wisdrawCommisions.Add(CardType.VISA,(decimal)1.0);
+            wisdrawCommisions.Add(CardType.MASTERCARD, (decimal)1.5);
+            transferCommisions.Add(CardType.VISA, (decimal)2.0);
+            transferCommisions.Add(CardType.MASTERCARD, (decimal)1.5);
         }
 
         //returns wisdraw commision for specified type of cards
-        public  double GetWisdrawCommision(CardType type)
+        public  decimal GetWisdrawCommision(CardType type)
         {
-            if (wisdrawCommisions.TryGetValue(type, out double comm))
+            if (wisdrawCommisions.TryGetValue(type, out decimal comm))
                 return comm;
-            else return 0;
+            else return decimal.Zero;
         }
 
         //returns transfer commision for specified type of cards
-        public  double GetTransferCommision(CardType type)
+        public  decimal GetTransferCommision(CardType type)
         {
-            if (transferCommisions.TryGetValue(type, out double comm))
+            if (transferCommisions.TryGetValue(type, out decimal comm))
                 return comm;
-            else return 0;
+            else return decimal.Zero;
         }
     }
 }

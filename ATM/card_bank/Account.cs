@@ -11,9 +11,9 @@ namespace ATM
     {
         public string ClientName { get; }
         private string TelNumb { get; }//not string but pointer to Telephone object?
-        public double Cash { get; private set; }
+        public decimal Cash { get; private set; }
 
-        public Account(string clientName, string telNumb, double cash)
+        public Account(string clientName, string telNumb, decimal cash)
         {
             ClientName = clientName;
             TelNumb = telNumb;
@@ -21,13 +21,13 @@ namespace ATM
         }
 
         //add money to cash
-        public void AddToCash(double money) {
+        public void AddToCash(decimal money) {
             if (money < 0) throw new ArgumentException("Sum of money to transfer cannot be less than zero");
             Cash += money;
         }
 
         //wisdraw money, if not enough throw an exception
-        public void WithdrawMoney(double money){
+        public void WithdrawMoney(decimal money){
             if (money < 0) throw new ArgumentException("Sum of money to transfer cannot be less than zero");
             if (money > Cash)
                 throw new NoEnoughMoneyException("Not enough money on balance to withdraw the specified sum.");

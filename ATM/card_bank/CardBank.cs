@@ -46,29 +46,29 @@ namespace ATM
         }
 
         //returns transfer commision for currently inserted card
-        public double GetTransferCommision()
+        public decimal GetTransferCommision()
         {
             return cardTypeMng.GetTransferCommision(currCard.Type);
         }
 
         //returns wisdraw commision for currently inserted card
-        public double GetWisdrawCommision()
+        public decimal GetWisdrawCommision()
         {
             return cardTypeMng.GetWisdrawCommision(currCard.Type);
         }
 
-        public static double GetCommInMoney(double money, double CommInPercentage)
+        public static decimal GetCommInMoney(decimal money, decimal CommInPercentage)
         {
-            double commMon = money * CommInPercentage / 100;
-            double commMonRounded = Math.Round(commMon * 100) / 100;
+            decimal commMon = money * CommInPercentage / (decimal)100.0;
+            decimal commMonRounded = Math.Round(commMon * (decimal)100.0) / (decimal)100.0;
             return commMonRounded;
         }
 
         //if enough money on accont withdraws money else throw exception
-        public void WithdrawMoney(double money, double commisionMoney)
+        public void WithdrawMoney(decimal money, decimal commisionMoney)
         {
             if (commisionMoney < 0) throw new ArgumentException("Withdraw commision cannot be less tha 0.");
-            double sum = money + commisionMoney;
+            decimal sum = money + commisionMoney;
             currCard.WithdrawMoney(sum);
         }
         
@@ -81,7 +81,7 @@ namespace ATM
 
 
         //transfers money, if not enough on card throws an NotEnoughMoneyException
-        public void TransferMoney(double transfSum, string cardNumb )
+        public void TransferMoney(decimal transfSum, string cardNumb )
         {
             if (transfSum < 0)
                 throw new ArgumentException("Sum for transfering cannot be less than 0.");
@@ -89,7 +89,7 @@ namespace ATM
                 throw new ArgumentException("Card number not available for transfering.");
             //double commMon = transfSum * GetTransferCommision() / 100;
             //double commMonRounded = Math.Round(commMon * 100) / 100;
-            double commMon = GetCommInMoney(transfSum, GetTransferCommision());
+            decimal commMon = GetCommInMoney(transfSum, GetTransferCommision());
             WithdrawMoney(transfSum, commMon);
             GetCard(cardNumb).AddMoney(transfSum);
         }
@@ -104,7 +104,7 @@ namespace ATM
             return currCard.GetClientName();
         }
 
-        public double GetCurrCardBalance()
+        public decimal GetCurrCardBalance()
         {
             return currCard.GetCash();
         }

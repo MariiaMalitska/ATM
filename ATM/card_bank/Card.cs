@@ -65,7 +65,7 @@ namespace ATM
            return DateTime.Now.CompareTo(BlockedUntilDate) < 0;
         }
 
-        public double GetCash()
+        public decimal GetCash()
         {
             return myAccount.Cash;
         }
@@ -76,13 +76,13 @@ namespace ATM
         }
 
         //add money to cash of account to which card is attached
-        public void AddMoney(double money)
+        public void AddMoney(decimal money)
         {
             myAccount.AddToCash(money);
         }
 
         // wisdraw money, if not enough throw an exception
-        public void WithdrawMoney(double money)
+        public void WithdrawMoney(decimal money)
         {
              myAccount.WithdrawMoney(money);
         }
