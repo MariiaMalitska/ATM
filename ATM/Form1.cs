@@ -16,8 +16,6 @@ namespace ATM
 
         private string inputCache = "";
 
-        private string receiptCache = "";
-
         ATMFunc atm = new ATMFunc();
 
         public Form1()
@@ -251,7 +249,6 @@ namespace ATM
                     //choose '2' transer cash to another card
                     //input card number
                     inputCache = "";
-                    receiptCache = "";
                     TransferMenu();
                     break;
                 case 41:
@@ -500,7 +497,7 @@ namespace ATM
         //mode 31
         private void WithdrawCommision()
         {
-            displayBox.Text = "Комісія для зняття з цієї картки: " + atm.GetWisdrawCommision() + "% - " + atm.GetWisdrawCommision() * sum / 100 + " UAH\r\n\r\n" +
+            displayBox.Text = "Комісія для зняття готівки з цієї картки: " + atm.GetWisdrawCommision() + "% - " + atm.GetCommisionInMoney(sum, atm.GetWisdrawCommision()) + " UAH\r\n\r\n" +
                 "1) Зняти готівку з комісією\r\n" +
                 "2) Повернутись до головного меню";
         }
@@ -535,7 +532,7 @@ namespace ATM
         //mode 32
         private void WithdrawReceipt()
         {
-            displayBox.Text = "Знято: " + (sum + atm.GetWisdrawCommision() * sum / 100) + " UAH\r\n" +
+            displayBox.Text = "Знято: " + (sum + atm.GetCommisionInMoney(sum, atm.GetWisdrawCommision())) + " UAH\r\n" +
                 "Видано: " + sum + " UAH\r\n\r\nДрукувати чек?\r\n\r\n" +
                         "1) Так\r\n" +
                         "2) Ні\r\n";
@@ -625,7 +622,7 @@ namespace ATM
         //mode 42
         private void TransferCommision()
         {
-            displayBox.Text = "Комісія для переказу з цієї картки: " + atm.GetTransferCommision() + "% - " + atm.GetTransferCommision() * sum / 100 + " UAH\r\n\r\n" +
+            displayBox.Text = "Комісія для переказу з цієї картки: " + atm.GetTransferCommision() + "% - " + atm.GetCommisionInMoney(sum, atm.GetTransferCommision()) + " UAH\r\n\r\n" +
                 "1) Переказати кошти з комісією\r\n" +
                 "2) Повернутись до головного меню";
         }
@@ -637,7 +634,7 @@ namespace ATM
             {
                 try
                 {
-                    receiptCache = atm.TransferMoney(sum, inputCache);
+                    atm.TransferMoney(sum, inputCache);
                     ChangeMode(43);
                 }
                 catch (NoEnoughMoneyException e)
@@ -655,7 +652,7 @@ namespace ATM
         //mode 43
         private void TransferReceipt()
         {
-            displayBox.Text = "Знято: " + (sum + atm.GetWisdrawCommision() * sum / 100) + " UAH\r\n" +
+            displayBox.Text = "Знято: " + (sum + atm.GetCommisionInMoney(sum, atm.GetTransferCommision())) + " UAH\r\n" +
                 "Переказано: " + sum + " UAH\r\n\r\nДрукувати чек?\r\n\r\n" +
                         "1) Так\r\n" +
                         "2) Ні\r\n";
@@ -667,7 +664,7 @@ namespace ATM
             if (c == 1)
                 try
                 {
-                    printBox.Text = receiptCache;
+                    printBox.Text = atm.GetTransferReceipt(sum,inputCache);
                     ChangeMode(2);
                 }
                 catch (NoPaperException e)
