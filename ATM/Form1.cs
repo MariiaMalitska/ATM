@@ -69,12 +69,11 @@ namespace ATM
 
             switch (mode)
             {
+                case 0:
                 case 1:
                 case 2:
                     ChangeMode(0);
                     break;
-                case -1:
-                case 0:
                 case 3:
                 case 31:
                 case 32:
@@ -720,7 +719,7 @@ namespace ATM
         //mode 52
         private void TelephoneCommision()
         {
-            displayBox.Text = "Комісія для поповнення: " + atm.GetTelCommision(sum) + "% - " + atm.GetTelCommision(sum) * sum / 100 + " UAH\r\n\r\n" +
+            displayBox.Text = "Комісія для поповнення: " +  atm.GetTelCommision(sum) + " UAH\r\n\r\n" +
                 "1) Поповнити з комісією\r\n" +
                 "2) Повернутись до головного меню";
         }
@@ -750,7 +749,7 @@ namespace ATM
         //mode 53
         private void TelephoneReceipt()
         {
-            displayBox.Text = "Знято: " + (sum + atm.GetTelCommision(sum) * sum / 100) + " UAH\r\n" +
+            displayBox.Text = "Знято: " + (sum + atm.GetTelCommision(sum)) + " UAH\r\n" +
                 "Поповнено: " + sum + " UAH\r\n\r\nНатисність \"Cancel\" для повернення в головне меню";
         }
 
