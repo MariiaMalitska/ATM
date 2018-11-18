@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Windows.Forms;
 
 //зв"язок інтерфейсу та класу
@@ -45,6 +46,7 @@ namespace ATM
             displayBox.Text = "Банкомат вимкнено";
             HideButtonCard();
             buttonTurn.Text = "Turn On";
+            displayBox.BackColor = SystemColors.Control;
         }
 
         //turns on the atm
@@ -55,6 +57,7 @@ namespace ATM
             displayBox.Text = "Будь ласка, вставте картку";
             ShowButtonCard();
             buttonTurn.Text = "Turn Off";
+            displayBox.BackColor = SystemColors.ControlLightLight;
         }
 
         private void buttonExit_Click(object sender, System.EventArgs e)
@@ -104,7 +107,7 @@ namespace ATM
         private void buttonCard_Click(object sender, System.EventArgs e)
         {
             string cardNumber = Microsoft.VisualBasic.Interaction.InputBox("Введіть номер картки", "Картка", "");
-            CheckCard(cardNumber);
+            if (cardNumber.Length>0) CheckCard(cardNumber);
         }
 
         private void button1_Click(object sender, System.EventArgs e)
@@ -753,16 +756,24 @@ namespace ATM
         //mode 6
         private void BalanceMenu()
         {
-            displayBox.Text = "Баланс на картці: " + atm.GetBalance() + " UAH";
-            displayBox.Text += "\r\n\r\nДрукувати чек?\r\n\r\n" +
-                "1) Так\r\n" +
-                "2) Ні\r\n";
+            displayBox.Text = "Оберіть доступний варіант:\r\n\r\n" +
+                "1) Вивести баланс на екрані\r\n" +
+                "2) Друкувати баланс у чеку\r\n";
+
+            displayBox.Text += "\r\n\r\nАбо натисність \"Cancel\" для повернення в головне меню";
         }
 
         //input for mode 6
         private void BalanceProceed(int c)
         {
             if (c == 1)
+            {
+                ChangeMode(100);
+                displayBox.Text = "Баланс на картці: " + atm.GetBalance() + " UAH";
+                displayBox.Text += "\r\n\r\nНатисність \"Cancel\" для повернення в головне меню";
+            }
+            if (c == 2)
+            {
                 try
                 {
                     printBox.Text = atm.GetBalanceReceipt();
@@ -772,8 +783,7 @@ namespace ATM
                 {
                     displayBox.Text = "Відсутній папір для друку. Натисність \"Cancel\" для повернення в головне меню";
                 }
-            if (c == 2)
-                ChangeMode(2);
+            }
         }
 
         //mode 7
